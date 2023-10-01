@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <style>
+        .list-container{
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .list-item{
+            padding: 5px;
+            width: 200px;
+            font-size: x-large;
+            text-align: center;
+            background: #e0e0e0;
+            border-radius: 5rem;
+            margin-bottom: 2.5px;
+        }
+    </style>
+    <h1 style="text-align: center">{{ month.MonthName }}</h1>
+
+    <div class="list-container">
+        {% for day in month.Days %}
+            <div class="list-item">{{ day.DayNumber }} {{ day.DayName }}</div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
