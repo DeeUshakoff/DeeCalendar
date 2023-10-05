@@ -5,30 +5,22 @@
     <style>
         table {
 
-            {% if selectWeekends %}
-            border-collapse: inherit;
-            {% else %}
-            border-collapse: collapse;
+        {% if selectWeekends %} border-collapse: inherit;
+        {% else %} border-collapse: collapse;
             border: 1px solid gray;
-            {% endif %}
-
-            background: white;
+        {% endif %} background: white;
             color: black;
         }
 
-        th,
-        td {
+        th, td {
 
-        {% if selectWeekends %}
-        {% else %}
-            border: 1px solid gray;
-        {% endif %}
-            margin: 5px;
+        {% if selectWeekends %}{% else %} border: 1px solid gray;
+        {% endif %} margin: 5px;
             font-weight: bold;
             text-align: center;
         }
 
-        .td-red{
+        .td-red {
             color: white;
             background: red;
             border-radius: 5rem;
@@ -42,15 +34,13 @@
 
         <thead>
         <tr>
-            <!-- Here we have applied inline style
-                 to make it more attractive-->
-            <th>Sun</th>
             <th>Mon</th>
             <th>Tue</th>
             <th>Wed</th>
             <th>Thu</th>
             <th>Fri</th>
             <th>Sat</th>
+            <th>Sun</th>
         </tr>
         </thead>
 
@@ -69,7 +59,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-
-
 {% endblock %}
