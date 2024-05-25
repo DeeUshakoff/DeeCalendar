@@ -1,13 +1,17 @@
-FROM php:8.1-cli
+FROM ubuntu:latest
 
-RUN apt-get update -y && apt-get install -y libmcrypt-dev
+# экранировать переводы строк надо
+RUN apt update && \
+    apt install -y nginx curl php && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    composer install # Что инстал та? Нет composer.json
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY ./hosts/my-application.local.conf /etc/nginx/sites-enabled/my-application.local.conf
 
-WORKDIR /app
-COPY . /app
+WORKDIR /var/www/my-application.local
+VOLUME /var/www/my-application.local
 
-RUN composer install --no-scripts
+# бесполезная директива
+EXPOSE 80
 
-EXPOSE 8000
-CMD php bin/console server:run 0.0.0.0:8000
+CMD [ "nginx", "-g", "daemon off;"]
