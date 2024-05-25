@@ -44,5 +44,7 @@ jobs:
     - name: Log in to Docker Hub
       run: echo dckr_pat_8CqpGSCB_UBF-xmPmBQ-Sryqyro | docker login -u deeushakoff --password-stdin
 
+    - name: Create Docker Tag
+      run: docker tag <image id> deeushakoff/dee-calendar
     - name: Push to Docker Hub
       run: docker push deeushakoff/dee-calendar
