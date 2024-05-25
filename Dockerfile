@@ -8,9 +8,6 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libpq-dev
 
-RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
-RUN docker-php-ext-install pgsql pdo_pgsql
-
 WORKDIR /var/www/html
 COPY . /var/www/html
 RUN composer install
