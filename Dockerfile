@@ -1,20 +1,13 @@
-FROM php:8.1-apache
+FROM php:8.1-cli
+
+RUN apt-get update -y && apt-get install -y libmcrypt-dev
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN apt-get update && apt-get install -y \
-    git \
-    zip \
-    unzip \
-    libpq-dev \
-
-WORKDIR /var/www/html
-COPY . /var/www/html
-
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+WORKDIR /app
+COPY . /app
 
 RUN composer install
 
-EXPOSE 80
-
-CMD ["apache2-foreground"]
+EXPOSE 8000
+CMD php bin/console server:run 0.0.0.0:8000
