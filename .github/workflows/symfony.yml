@@ -40,7 +40,8 @@ jobs:
 
     - name: Build Docker image
       run: docker build -t dee-calendar .
-
+    - name: Docker Compose
+      run: docker compose build --no-cache
     - name: Log in to Docker Hub
       run: echo dckr_pat_8CqpGSCB_UBF-xmPmBQ-Sryqyro | docker login -u deeushakoff --password-stdin
 
