@@ -43,7 +43,7 @@ jobs:
     - name: Docker Compose
       run: docker compose build --no-cache
     - name: Log in to Docker Hub
-      run: echo dckr_pat_8CqpGSCB_UBF-xmPmBQ-Sryqyro | docker login -u $DOCKER_USERNAME --password-stdin
+      run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u $DOCKER_USERNAME --password-stdin
 
     - name: Create Docker Tag
       run: docker tag $DOCKERHUB_REPO_NAME $DOCKER_USERNAME/$DOCKERHUB_REPO_NAME
