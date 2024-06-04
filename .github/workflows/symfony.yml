@@ -43,9 +43,9 @@ jobs:
     - name: Docker Compose
       run: docker compose build --no-cache
     - name: Log in to Docker Hub
-      run: echo dckr_pat_8CqpGSCB_UBF-xmPmBQ-Sryqyro | docker login -u deeushakoff --password-stdin
+      run: echo ${{ secrets.DOCKERHUB_TOKEN}} | docker login -u ${{ secrets.DOCKERHUB_USERNAME}} --password-stdin
 
     - name: Create Docker Tag
-      run: docker tag dee-calendar deeushakoff/dee-calendar
+      run: docker tag ${{ secrets.DOCKERHUB_REPO_NAME}} ${{ secrets.DOCKERHUB_USERNAME}}/${{ secrets.DOCKERHUB_REPO_NAME}}
     - name: Push to Docker Hub
-      run: docker push deeushakoff/dee-calendar
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME}}/${{ secrets.DOCKERHUB_REPO_NAME}}
